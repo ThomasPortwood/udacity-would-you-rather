@@ -1,31 +1,12 @@
-import { _getUsers } from '../_DATA'
+import { _getUsers, _getQuestions } from '../_DATA'
+import { receiveUsers } from './users'
+import { receiveQuestions } from './questions'
 
+export const SET_AUTHED_USER_ID = 'SET_AUTHED_USER_ID'
 
-export const RECEIVE_USERS = 'RECEIVE_USERS'
-
-export const SET_AUTHED_USER = 'SET_AUTHED_USER'
-
-
-export const GET_QUESTIONS = 'GET_QUESTIONS'
-
-export const RECEIVE_QUESTIONS = 'RECEIVE_QUESTIONS'
-
-
-export const SAVE_QUESTION = 'SAVE_QUESTION'
-
-export const SAVE_QUESTION_ANSWER = 'SAVE_QUESTION_ANSWER'
-
-export function receiveUsers(users) {
+export function setAuthedUserId(userId) {
   return {
-    type: RECEIVE_USERS,
-    users
-  }
-}
-
-export function handleGetUsers() {
-  return (dispatch) => {
-    _getUsers().then((users) => {
-      dispatch(receiveUsers(users))
-    })
+    type: SET_AUTHED_USER_ID,
+    userId
   }
 }

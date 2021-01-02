@@ -1,18 +1,23 @@
-import React from 'react'
+import React, { Component } from 'react'
 import Login from './components/Login'
-import {createStore} from 'redux'
-import reducer from './reducers'
-import middleware from './middleware'
-import {Provider} from 'react-redux'
+import Questions from './components/Questions'
+import { connect } from 'react-redux'
 
-const store = createStore(reducer, middleware)
+class App extends Component {
 
-function App() {
-  return (
-    <Provider store={store}>
-      <Login />
-    </Provider>
-  );
+  render() {
+
+    const { authedUserId } = this.props
+
+    if (!authedUserId)
+      return <Login />
+
+    return <Questions />
+  }
 }
 
-export default App;
+function mapStateToProps({ authedUserId }, props) {
+  return { ...props, authedUserId }
+}
+
+export default connect(mapStateToProps)(App)

@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
-import {connect} from 'react-redux'
-import {handleGetUsers} from '../actions/shared'
+import { connect } from 'react-redux'
+import { handleGetUsers } from '../actions/users'
+import { setAuthedUserId } from '../actions/shared'
 
 class Login extends Component {
 
@@ -10,20 +11,22 @@ class Login extends Component {
 
   render() {
 
-    const {users} = this.props
+    const { users, dispatch } = this.props
+
+    if (!users)
+      return <div>Loading ...</div>
 
     return (
-      <ul>
-        {JSON.stringify(users)}
-      </ul>
+      <select onChange={(e) => dispatch(setAuthedUserId(e.target.value))}>
+        {Object.keys(users).map(k => <option value={k} key={k}>{k}</option>)}
+      </select>
     )
   }
 
 }
 
-function mapStateToProps({users}, props) {
-  console.log(users)
-  return {...props, users}
+function mapStateToProps({ users }, props) {
+  return { ...props, users }
 }
 
 export default connect(mapStateToProps)(Login)
