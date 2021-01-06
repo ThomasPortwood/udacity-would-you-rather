@@ -1,5 +1,6 @@
 import { _getQuestions, _saveQuestion } from '../_DATA'
 import { SHOW_LOADING, HIDE_LOADING } from './loading'
+import { ADD_QUESTION_TO_USER } from './users'
 
 export const RECEIVE_QUESTIONS = 'RECEIVE_QUESTIONS'
 export const RECEIVE_SAVED_QUESTION = 'RECEIVE_SAVED_QUESTION'
@@ -20,6 +21,7 @@ export function handleSaveQuestion(question) {
   return (dispatch, getState) => {
     return _saveQuestion(question).then(question => {
       dispatch({ type: RECEIVE_SAVED_QUESTION, question })
+      dispatch({ type: ADD_QUESTION_TO_USER, question })
     })
   }
 }

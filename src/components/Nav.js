@@ -1,14 +1,14 @@
 import React from 'react'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { removeAuthedUser } from '../actions/authedUser'
 
 export default function Nav() {
 
+  const dispatch = useDispatch()
   const authedUser = useSelector(state => state.authedUser)
 
   function handleLogout() {
-    const { dispatch } = this.props
     dispatch(removeAuthedUser())
   }
 
