@@ -1,6 +1,12 @@
-import {combineReducers} from 'redux'
-import {users} from './users'
-import {authedUserId} from './authedUserId'
-import {questions} from './questions'
+import { combineReducers } from 'redux'
+import { users } from './users'
+import { authedUser } from './authedUser'
+import { questions } from './questions'
+import { loading } from './loading'
 
-export default combineReducers({users, authedUserId, questions})
+export default combineReducers({
+  authedUser,
+  loading,
+  questions,
+  users
+})

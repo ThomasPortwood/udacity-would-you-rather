@@ -1,0 +1,15 @@
+login (dispatch(handleGetUsers()))
+
+nav (show authedUser information, has logout button, shows unanswered by default, toggle to answered, dispatch(handleGetQuestions()))
+
+  question list (divide questions to answered and unanswered, props: questions, authedUser)
+
+  answered question (/question/:id)
+
+  unanswered question (/question/:id)
+
+  /add 
+
+  /leaderboard (users, questions)
+
+

@@ -1,32 +1,24 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import { handleGetUsers } from '../actions/users'
-import { setAuthedUserId } from '../actions/shared'
+import React from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { setAuthedUser } from '../actions/authedUser'
+import { handleGetQuestions } from '../actions/questions'
 
-class Login extends Component {
+const defaultSelectValue = 'Select User'
 
-  componentDidMount() {
-    this.props.dispatch(handleGetUsers())
+export default function Login() {
+
+  const dispatch = useDispatch()
+  const users = useSelector(state => state.users)
+
+  function handleLogin(id) {
+    dispatch(setAuthedUser(users[id]))
+    dispatch(handleGetQuestions())
   }
 
-  render() {
-
-    const { users, dispatch } = this.props
-
-    if (!users)
-      return <div>Loading ...</div>
-
-    return (
-      <select onChange={(e) => dispatch(setAuthedUserId(e.target.value))}>
-        {Object.keys(users).map(k => <option value={k} key={k}>{k}</option>)}
-      </select>
-    )
-  }
-
+  return (
+    <select onChange={(e) => handleLogin(e.target.value)} defaultValue={defaultSelectValue}>
+      <option disabled>{defaultSelectValue}</option>
+      {Object.keys(users).map(k => <option value={k} key={k}>{k}</option>)}
+    </select>
+  )
 }
-
-function mapStateToProps({ users }, props) {
-  return { ...props, users }
-}
-
-export default connect(mapStateToProps)(Login)

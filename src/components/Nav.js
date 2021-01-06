@@ -1,14 +1,24 @@
 import React from 'react'
-import {connect} from 'react-redux'
+import { useSelector } from 'react-redux'
+import { Link } from 'react-router-dom'
+import { removeAuthedUser } from '../actions/authedUser'
 
-const Nav = (props) => {
+export default function Nav() {
 
-  return <div>{props.authedUserId}</div>
+  const authedUser = useSelector(state => state.authedUser)
 
+  function handleLogout() {
+    const { dispatch } = this.props
+    dispatch(removeAuthedUser())
+  }
+
+  return (
+    <nav>
+      <Link to='/'>Home</Link>
+      <Link to='/profile'>{authedUser.name}</Link>
+      <Link to='/add'>Add Question</Link>
+      <Link to='/leaderboard'>Leaderboard</Link>
+      <button onClick={handleLogout}>Logout</button>
+    </nav>
+  )
 }
-
-function mapStateToProps({authedUserId}, props) {
-  return {...props, authedUserId}
-}
-
-export default connect(mapStateToProps)(Nav)
