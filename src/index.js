@@ -1,11 +1,12 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React from 'react'
+import ReactDOM from 'react-dom'
 import { createStore } from 'redux'
 import reducer from './reducers'
 import middleware from './middleware'
 import { Provider } from 'react-redux'
-import { composeWithDevTools } from 'redux-devtools-extension';
-import App from './components/App';
+import { composeWithDevTools } from 'redux-devtools-extension'
+import App from './components/App'
+import 'fomantic-ui-css/semantic.css'
 
 const store = createStore(reducer, composeWithDevTools(middleware))
 

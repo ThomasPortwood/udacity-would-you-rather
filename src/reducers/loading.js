@@ -1,12 +1,28 @@
-import {SHOW_LOADING, HIDE_LOADING} from '../actions/loading'
+import { 
+  SHOW_USERS_LOADING,
+  HIDE_USERS_LOADING,
+  SHOW_QUESTIONS_LOADING, 
+  HIDE_QUESTIONS_LOADING 
+} from '../actions/loading'
 
-export function loading(state = false, action) {
+export function usersLoading(state = false, action) {
   switch (action.type) {
-    case SHOW_LOADING: 
+    case SHOW_USERS_LOADING:
       return true
-    case HIDE_LOADING: 
+    case HIDE_USERS_LOADING:
       return false
-    default: 
+    default:
+      return state
+  }
+}
+
+export function questionsLoading(state = false, action) {
+  switch (action.type) {
+    case SHOW_QUESTIONS_LOADING:
+      return true
+    case HIDE_QUESTIONS_LOADING:
+      return false
+    default:
       return state
   }
 }

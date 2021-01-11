@@ -1,0 +1,6 @@
+TODO: 
+
+Finish the question page 
+Finish add question page
+Avatars
+Readme with design diagram
