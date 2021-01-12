@@ -5,7 +5,7 @@ import { setAuthedUser } from '../actions/authedUser'
 import { handleGetQuestions } from '../actions/questions'
 import { Loader } from 'semantic-ui-react'
 
-const defaultSelectValue = 'Select User'
+const defaultSelectValue = 'Please select user to log in'
 
 export default function Login() {
 

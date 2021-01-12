@@ -1,23 +1,16 @@
-import React, { useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { useHistory } from 'react-router-dom'
-import { removeAuthedUser } from '../actions/authedUser'
+import React from 'react'
+import { useSelector } from 'react-redux'
+import { useHistory, useLocation } from 'react-router-dom'
 import { Menu } from 'semantic-ui-react'
 
 export default function Nav() {
 
-  const dispatch = useDispatch()
   const history = useHistory()
+  const location = useLocation()
   const authedUser = useSelector(state => state.authedUser)
-  const [item, setItem] = useState('/')
 
   function onClick(e, { name }) {
-    setItem(name)
     history.push(name)
-  }
-
-  function handleLogout() {
-    dispatch(removeAuthedUser())
   }
 
   return (
@@ -25,33 +18,34 @@ export default function Nav() {
       <Menu.Item
         name={'/'}
         key={'/'}
-        active={item === '/'}
-        onClick={onClick} content={'Dashboard'} />
+        active={location.pathname === '/'}
+        onClick={onClick} 
+        content={'Dashboard'} />
       <Menu.Item
         name={'/add'}
         key={'/add'}
-        active={item === '/add'}
+        active={location.pathname === '/add'}
         onClick={onClick}
         content={'Add Question'}
       />
       <Menu.Item
         name={'/leaderboard'}
         key={'/leaderboard'}
-        active={item === '/leaderboard'}
+        active={location.pathname === '/leaderboard'}
         onClick={onClick}
         content={'Leaderboard'}
       />
       <Menu.Item
         name={'/profile'}
         key={'/profile'}
-        active={item === '/profile'}
+        active={location.pathname === '/profile'}
         onClick={onClick}
         content={authedUser?.name || 'Profile'}
       />
       <Menu.Item
         name='/logout'
-        active={item === '/logout'}
-        onClick={handleLogout}
+        active={location.pathname === '/logout'}
+        onClick={onClick}
         content={'Logout'}
       />
     </Menu >

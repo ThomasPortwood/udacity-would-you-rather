@@ -1,6 +1,7 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 import { Redirect } from 'react-router-dom'
+import { Image } from 'semantic-ui-react'
 
 export default function Profile(props) {
 
@@ -12,7 +13,21 @@ export default function Profile(props) {
 
   return (
     <div>
-      {`Profile - ${users[authedUser].name}`}
+      <div>
+        <Image
+          src={users[authedUser].avatarURL}
+          avatar
+        />
+      </div>
+      <br />
+      <div>
+        {`Id: ${users[authedUser].id}`}
+      </div>
+      <br />
+      <div>
+        {`Name: ${users[authedUser].name}`}
+      </div>
+      <br />
     </div>
   )
 }

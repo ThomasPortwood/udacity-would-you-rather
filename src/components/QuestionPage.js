@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 import { Loader, Image } from 'semantic-ui-react'
 import { handleSaveQuestionAnswer } from '../actions/questions'
+import NotFoundPage from './NotFoundPage'
 
 function calculateOptionPercentages(question) {
   const { optionOne, optionTwo } = question
@@ -29,6 +30,10 @@ export default function QuestionPage() {
     return <Loader active />
 
   const question = questions[id]
+
+  if (!question)
+    return <NotFoundPage />
+
   const author = question && users[question.author]
   const answer = users[authedUser].answers[id]
   const { optionOne, optionTwo } = question

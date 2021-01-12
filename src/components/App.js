@@ -8,6 +8,7 @@ import Home from './Home'
 import AddQuestion from './AddQuestion'
 import Leaderboard from './Leaderboard'
 import QuestionPage from './QuestionPage'
+import Logout from './Logout'
 import { handleGetUsers } from '../actions/users'
 import { Grid, Segment } from 'semantic-ui-react'
 
@@ -33,6 +34,7 @@ class App extends Component {
               <Route path='/profile' component={Profile} />
               <Route path='/add' component={AddQuestion} />
               <Route path='/leaderboard' component={Leaderboard} />
+              <Route path='/logout' component={Logout} />
             </Grid.Column>
           </Grid>
         </Segment>
