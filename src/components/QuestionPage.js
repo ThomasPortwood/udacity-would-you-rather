@@ -3,7 +3,7 @@ import { Segment, Button } from 'semantic-ui-react'
 import { useParams } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { Redirect } from 'react-router-dom'
-import { Loader } from 'semantic-ui-react'
+import { Loader, Image } from 'semantic-ui-react'
 import { handleSaveQuestionAnswer } from '../actions/questions'
 
 function calculateOptionPercentages(question) {
@@ -36,26 +36,39 @@ export default function QuestionPage() {
 
   return (
     <Segment>
-      <h3>Would you rather</h3>
-      <span>A poll by {author?.name}</span>
+      <h1>{`Would you rather`}</h1>
+      <h3>{`by ${author.name}`}</h3>
+      <Image
+        src={author.avatarURL}
+        avatar
+      />
       {answer
         ? <div>
-          <div>{`"${optionOne.text}" has ${optionOne.votes.length} votes (${percentages[0]}%)`}</div>
-          <div>{`"${optionTwo.text}" has ${optionTwo.votes.length} votes (${percentages[1]}%)`}</div>
+          <span>
+            {`"${optionOne.text}" has ${optionOne.votes.length} votes (${percentages[0]}%)`}
+          </span>
+          <br />
+          <span>
+            {`"${optionTwo.text}" has ${optionTwo.votes.length} votes (${percentages[1]}%)`}
+          </span>
+          <br />
+          <div>
+            {`You would rather ${question[answer].text}`}
+          </div>
         </div>
         : <div>
-          <div>
+          <span>
             <Button
               onClick={() => dispatch(handleSaveQuestionAnswer(id, 'optionOne'))}
               content={question.optionOne.text}
             />
-          </div>
-          <div>
+          </span>
+          <span>
             <Button
               onClick={() => dispatch(handleSaveQuestionAnswer(id, 'optionTwo'))}
               content={question.optionTwo.text}
             />
-          </div>
+          </span>
         </div>}
     </Segment>
   )

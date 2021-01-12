@@ -15,24 +15,31 @@ export default function AddQuestion(props) {
   if (!authedUser)
     return <Redirect to='/login' push={true} />
 
-  function handleSave() {
+  const handleSave = (e, { name }) => {
     dispatch(handleSaveQuestion({ author: authedUser, optionOneText, optionTwoText }))
     history.push('/')
   }
 
   return (
-    <Grid columns={1}>
-      <Grid.Column width={10}>
-        <Grid.Row>
-          <Input fluid placeholder='Option One' onChange={(e, { value }) => setOptionOneText(value)} />
-        </Grid.Row>
-        <Grid.Row>
-          <Input fluid placeholder='Option Two' onChange={(e, { value }) => setOptionTwoText(value)} />
-        </Grid.Row>
-        <Grid.Row>
-          <Button onClick={handleSave}>Something</Button>
-        </Grid.Row>
-      </Grid.Column>
+    <Grid columns={1} rows={3}>
+      <Grid.Row>
+        <h1>Would you rather ...</h1>
+      </Grid.Row>
+      <Grid.Row>
+        <Input
+          placeholder='Option One'
+          onChange={(e, { value }) => setOptionOneText(value)}
+        />
+      </Grid.Row>
+      <Grid.Row>
+        <Input
+          placeholder='Option Two'
+          onChange={(e, { value }) => setOptionTwoText(value)}
+        />
+      </Grid.Row>
+      <Grid.Row>
+        <Button onClick={handleSave}>Save</Button>
+      </Grid.Row>
     </Grid>
   )
 }
